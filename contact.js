@@ -37,20 +37,38 @@ function displayContactlist(){
     }
 }
 //function is a reusable chunk of code
-displayContactlist();
-displayContactlist();
 
-function addNewContact(contactDatabase,fname, lname, email, favorite, priority){
+function addNewContact(contactDatabase,fname, lname, email, fave, pri){
     let newContact = {
         firstName:fname,
         lastName:lname,
         email:email,
-        favorite:favorite
-        priority:priority
+        favorite:fave,
+        priority:pri
     }
     //add new contact to the back of the array
-    contactDatabase.push(newContact)
+    contactDatabase.push(newContact);
 }
 
+
+
+
+function deleteContactByEmail(contactDatabase,email){
+  // from email address, find the index of the contact that we want to delte
+  //use linear search
+  let wantedIndex = null;
+  for (let i = 0; i < contactDatabase.length; i++){
+    let currentContact = contactDatabase[i];
+    if (currentContact.email == email){
+        wantedIndex = i;
+        break;
+    }
+  } 
+   contactDatabase.splice(wantedIndex,1);
+};
+
 addNewContact(contactDatabase,"Sherry","Lady","lady@femail.com",true,5);
+
+
+deleteContactByEmail(contactDatabase,"harry@supermail.com")
 displayContactlist();
